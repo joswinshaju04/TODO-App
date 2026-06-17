@@ -1,21 +1,27 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
+
 <body>
-    <form method="POST">
-        {% csrf_token %}
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="taskname"><br><br>
+    <div class="bg">
+        <h1>To Do List</h1>
+        <form method="POST" class="form-bg">
+            {% csrf_token %}
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="taskname">
 
-        <label for="date" >Date:</label>
-        <input type="date" id="date" name="taskdate"><br><br>
+            <label for="date" >Date:</label>
+            <input type="date" id="date" name="taskdate">
 
-        <button type="submit">Submit</button>
-    </form>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
     <div>
         {% for i in item %}
             <p>{{i.taskname}}</p>
@@ -24,6 +30,7 @@
             <button><a href="{% url 'update' i.id %}">Update</a></button>
         {% endfor %}
     </div>
+    
     
 </body>
 </html>
